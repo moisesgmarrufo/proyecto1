@@ -265,10 +265,23 @@ public NewJFrame() {
     
   int q = this.jTable1.getSelectedRow();
      if(q>=0){
-               Object alumno[] = new Object[4];
-    dtm=(DefaultTableModel)this.jTable1.getModel();
-    dtm.addRow(alumno);
-         dtm.removeRow(q);
+txtNombre.setText("");
+txtCedula.setText("");
+txtEdad.setText("");
+txtRecidencia.setText("");
+
+         try{
+
+           String sql = "insert into alumno(nombre, cedula, edad, recidencia)values('"-nombre-"','"-cedula-"' ,'"-edad-"' ,'"-recidencia-"')";
+         conet = con1.getConnection();
+         st = conet.createStatement();
+         st.executeUpdate(sql);
+         dtm.removeRow(q);     
+         }catch(Exception e){
+             
+         }
+      
+         
      }
     }                                        
 
@@ -316,9 +329,7 @@ txtRecidencia.setText("");
          conet = con1.getConnection();
          st = conet.createStatement();
          st.executeUpdate(sql);
-
-
-    }
+   }
          }catch (Exception e){
          
  
